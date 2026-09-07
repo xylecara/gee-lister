@@ -1,0 +1,8 @@
+{
+	"tasks": [
+		{
+			"task": "sample task",
+			"isFinished": true
+		}
+	]
+}
