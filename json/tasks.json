@@ -1,8 +1,36 @@
 {
 	"tasks": [
 		{
+			"id": 1,
 			"task": "sample task",
+			"description": "this is a sample task",
+			"createdAt": "now",
+			"updatedAt": "now",
 			"isFinished": true
+		},
+		{
+			"id": 2,
+			"task": "cycling",
+			"description": "ride a bike",
+			"createdAt": "2026-Sep-08 23:42:34",
+			"updatedAt": "2026-Sep-08 23:42:34",
+			"isFinished": false
+		},
+		{
+			"id": 3,
+			"task": "compute",
+			"description": "its more fun to compute",
+			"createdAt": "2026-Sep-08 23:42:44",
+			"updatedAt": "2026-Sep-08 23:42:44",
+			"isFinished": false
+		},
+		{
+			"id": 4,
+			"task": "funk riffing",
+			"description": "play some funky riffs on a guitar",
+			"createdAt": "2026-Sep-08 23:44:05",
+			"updatedAt": "2026-Sep-08 23:44:05",
+			"isFinished": false
 		}
 	]
 }

@@ -10,8 +10,12 @@ type TaskList struct {
 }
 
 type Task struct {
-	Task       string `json:"task"`
-	IsFinished bool   `json:"isFinished"`
+	ID          int    `json:"id"`
+	Task        string `json:"task"`
+	Description string `json:"description"`
+	CreatedAt   string `json:"createdAt"`
+	UpdatedAt   string `json:"updatedAt"`
+	IsFinished  bool   `json:"isFinished"`
 }
 
 // From json to go struct
