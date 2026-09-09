@@ -3,8 +3,10 @@ package commands
 import (
 	"fmt"
 	"os"
+	"strconv"
 
 	"github.com/xylecara/gee-lister/handler"
+	"github.com/xylecara/gee-lister/formatter"
 )
 
 func Add(tasklist handler.TaskList, timeNow, tasksJSON string) error {
@@ -26,6 +28,67 @@ func Add(tasklist handler.TaskList, timeNow, tasksJSON string) error {
 
 		} else {
 			fmt.Println("Not enough arguments, use it like: glister add <task-name> <task-description>")
+		}
+
+		return nil
+}
+
+func Update(taskList handler.TaskList, timeNow, tasksJSON string) error {
+	if len(os.Args) > 4 {
+			switch os.Args[3] {
+			case "name":
+				for index, value := range taskList.Tasks {
+					if os.Args[2] == strconv.Itoa(value.ID) || os.Args[2] == value.Task {
+						taskList.Tasks[index].Task = os.Args[4]
+						break
+					}
+				}
+			case "description":
+				for index, value := range taskList.Tasks {
+					if os.Args[2] == strconv.Itoa(value.ID) || os.Args[2] == value.Task {
+						taskList.Tasks[index].Description = os.Args[4]
+						break
+					}
+				}
+			default:
+				fmt.Println("Unknown command")
+			}
+
+			for index, value := range taskList.Tasks {
+					if os.Args[2] == strconv.Itoa(value.ID) || os.Args[2] == value.Task {
+						taskList.Tasks[index].UpdatedAt = timeNow
+						break
+					}
+				}
+
+			err := handler.Write(tasksJSON, &taskList)
+			if err != nil {
+				return err
+			}
+
+		} else {
+			fmt.Println("Not enough arguments, use it like: \nglister update <task-name-or-id> name <new-name>\nglister update <task-name-or-id> description <new-desc>")
+		}
+
+		return nil
+}
+
+func Delete(taskList handler.TaskList, tasksJSON string) error {
+	if len(os.Args) > 2 {
+			for index, value := range taskList.Tasks {
+				if os.Args[2] == strconv.Itoa(value.ID) || os.Args[2] == value.Task {
+					taskList.Tasks = append(taskList.Tasks[:index], taskList.Tasks[index+1:]... )
+					break
+				}
+			}
+			taskList = formatter.FixIds(taskList)
+			
+			err := handler.Write(tasksJSON, &taskList)
+			if err != nil {
+				return err
+			}
+		} else {
+			fmt.Println("Not enough arguments, us it like: glister delete <task-name-or-id>")
 		}
 
 		return nil
