@@ -26,14 +26,6 @@
 		},
 		{
 			"id": 4,
-			"task": "funk riffing",
-			"description": "play some funky riffs on a guitar",
-			"createdAt": "2026-Sep-08 23:44:05",
-			"updatedAt": "2026-Sep-08 23:42:34",
-			"isFinished": false
-		},
-		{
-			"id": 5,
 			"task": "testing",
 			"description": "test the cli if it works",
 			"createdAt": "2026-Sep-09 21:25:25",

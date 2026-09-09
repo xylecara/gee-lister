@@ -44,13 +44,23 @@ func main() {
 			log.Fatal()
 		}
 
-	case "mark-in-progress":
-		fmt.Println("Mark-in-progress worked successfully!")
-	case "mark-done":
-		fmt.Println("Mark-done worked successfully!")
+	//stands for mark in progress
+	case "mip":
+		err := commands.MIP(taskList, tasksJSON)
+		if err != nil {
+			log.Fatal()
+		}
+	
+	//stands for mark done
+	case "md":
+		err := commands.MD(taskList, tasksJSON)
+		if err != nil {
+			log.Fatal()
+		}
+		
 	case "list":
 		commands.List(taskList)		
-
+	
 	default:
 		fmt.Println("Unknown command")
 	}

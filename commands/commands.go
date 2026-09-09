@@ -9,6 +9,8 @@ import (
 	"github.com/xylecara/gee-lister/formatter"
 )
 
+var hasTask = false
+
 func Add(tasklist handler.TaskList, timeNow, tasksJSON string) error {
 	lastTaskID := len(tasklist.Tasks)
 
@@ -57,15 +59,20 @@ func Update(taskList handler.TaskList, timeNow, tasksJSON string) error {
 			for index, value := range taskList.Tasks {
 					if os.Args[2] == strconv.Itoa(value.ID) || os.Args[2] == value.Task {
 						taskList.Tasks[index].UpdatedAt = timeNow
+						hasTask = true
 						break
 					}
 				}
-
-			err := handler.Write(tasksJSON, &taskList)
-			if err != nil {
-				return err
+			
+			if !hasTask {
+			fmt.Printf("no task with name or id %v found\n", os.Args[2])
+			} else {
+				err := handler.Write(tasksJSON, &taskList)
+				if err != nil {
+					return err
+				}
 			}
-
+				
 		} else {
 			fmt.Println("Not enough arguments, use it like: \nglister update <task-name-or-id> name <new-name>\nglister update <task-name-or-id> description <new-desc>")
 		}
@@ -78,24 +85,83 @@ func Delete(taskList handler.TaskList, tasksJSON string) error {
 			for index, value := range taskList.Tasks {
 				if os.Args[2] == strconv.Itoa(value.ID) || os.Args[2] == value.Task {
 					taskList.Tasks = append(taskList.Tasks[:index], taskList.Tasks[index+1:]... )
+					hasTask = true
 					break
 				}
 			}
-			taskList = formatter.FixIds(taskList)
-			
-			err := handler.Write(tasksJSON, &taskList)
-			if err != nil {
-				return err
+
+			if !hasTask {
+				fmt.Printf("no task with name or id %v found\n", os.Args[2])
+			} else {
+				taskList = formatter.FixIds(taskList)
+
+				err := handler.Write(tasksJSON, &taskList)
+				if err != nil {
+					return err
+				}
 			}
+			
 		} else {
-			fmt.Println("Not enough arguments, us it like: glister delete <task-name-or-id>")
+			fmt.Println("Not enough arguments, use it like: glister delete <task-name-or-id>")
 		}
 
 		return nil
 }
 
-func List(tasklist handler.TaskList) {
-	for _, value := range tasklist.Tasks {
+func MIP(taskList handler.TaskList, tasksJSON string) error {
+	if len(os.Args) > 2 {
+		for index, value := range taskList.Tasks {
+			if os.Args[2] == strconv.Itoa(value.ID) || os.Args[2] == value.Task {
+				taskList.Tasks[index].IsFinished = false
+				hasTask = true
+				break
+			}
+		}
+
+		if !hasTask {
+			fmt.Printf("no task with name or id %v found\n", os.Args[2])
+		} else {
+			err := handler.Write(tasksJSON, &taskList)
+			if err != nil {
+				return err
+			}
+		}
+
+	} else {
+		fmt.Println("Not enough arguments, use it like: glister mip <task-name-or-id>")
+	}
+
+	return nil
+}
+
+func MD(taskList handler.TaskList, tasksJSON string) error {
+	if len(os.Args) > 2 {
+		for index, value := range taskList.Tasks {
+			if os.Args[2] == strconv.Itoa(value.ID) || os.Args[2] == value.Task {
+				taskList.Tasks[index].IsFinished = true
+				hasTask = true
+				break
+			} 
+		}
+
+		if !hasTask {
+			fmt.Printf("no task with name or id %v found\n", os.Args[2])
+		} else {
+			err := handler.Write(tasksJSON, &taskList)
+			if err != nil {
+				return err
+			}
+		}
+
+	} else {
+		fmt.Println("Not enough arguments, use it like: glister md <task-name-or-id>")
+	}
+
+	return nil
+}
+
+func List(taskList handler.TaskList) {
+	for _, value := range taskList.Tasks {
 			fmt.Println(value)
 		}
 }
