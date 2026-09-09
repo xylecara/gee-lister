@@ -7,13 +7,17 @@ import (
 	"path/filepath"
 	"strconv"
 	"time"
+	
+	"github.com/xylecara/gee-lister/handler"
+	"github.com/xylecara/gee-lister/formatter"
+	"github.com/xylecara/gee-lister/commands"
 )
 
 func main() {
 	timeNow := time.Now()
 	timeNowStr := timeNow.Format("2006-Jan-02 15:04:05")
 	tasksJSON := filepath.Join("json", "tasks.json")
-	tasks, err := Read(tasksJSON)
+	tasks, err := handler.Read(tasksJSON)
 	if err != nil {
 		log.Fatal("could not read tasks json, check if it is missing or renamed(must be named tasks.json)")
 	}
@@ -27,9 +31,15 @@ func main() {
 	switch os.Args[1] {
 	case "add":
 		if len(os.Args) > 3 {
-			tasks.Tasks = append(tasks.Tasks, Task{lastTaskID + 1, os.Args[2], os.Args[3], timeNowStr, timeNowStr, false})
+			tasks.Tasks = append(tasks.Tasks, handler.Task{
+				ID:lastTaskID + 1, 
+				Task: os.Args[2], 
+				Description: os.Args[3], 
+				CreatedAt: timeNowStr, 
+				UpdatedAt: timeNowStr, 
+				IsFinished: false})
 
-			err := Write(tasksJSON, &tasks)
+			err := handler.Write(tasksJSON, &tasks)
 			if err != nil {
 				log.Fatal()
 			}
@@ -65,7 +75,7 @@ func main() {
 					}
 				}
 
-			err := Write(tasksJSON, &tasks)
+			err := handler.Write(tasksJSON, &tasks)
 			if err != nil {
 				log.Fatal()
 			}
@@ -82,9 +92,9 @@ func main() {
 					break
 				}
 			}
-			tasks = fixIds(tasks)
+			tasks = formatter.FixIds(tasks)
 			
-			err := Write(tasksJSON, &tasks)
+			err := handler.Write(tasksJSON, &tasks)
 			if err != nil {
 				log.Fatal()
 			}
@@ -97,9 +107,7 @@ func main() {
 	case "mark-done":
 		fmt.Println("Mark-done worked successfully!")
 	case "list":
-		for _, value := range tasks.Tasks {
-			fmt.Println(value)
-		}
+		commands.List(tasks)		
 
 	default:
 		fmt.Println("Unknown command")
