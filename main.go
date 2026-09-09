@@ -34,11 +34,46 @@ func main() {
 				log.Fatal()
 			}
 		} else {
-			fmt.Println("Not enough arguments, use it like glister add <task-name> <task-description>")
+			fmt.Println("Not enough arguments, use it like: glister add <task-name> <task-description>")
 		}
 
 	case "update":
-		fmt.Println("Update worked successfully!")
+		if len(os.Args) > 4 {
+			switch os.Args[3] {
+			case "name":
+				for index, value := range tasks.Tasks {
+					if os.Args[2] == strconv.Itoa(value.ID) || os.Args[2] == value.Task {
+						tasks.Tasks[index].Task = os.Args[4]
+						break
+					}
+				}
+			case "description":
+				for index, value := range tasks.Tasks {
+					if os.Args[2] == strconv.Itoa(value.ID) || os.Args[2] == value.Task {
+						tasks.Tasks[index].Description = os.Args[4]
+						break
+					}
+				}
+			default:
+				fmt.Println("Unknown command")
+			}
+
+			for index, value := range tasks.Tasks {
+					if os.Args[2] == strconv.Itoa(value.ID) || os.Args[2] == value.Task {
+						tasks.Tasks[index].UpdatedAt = timeNowStr
+						break
+					}
+				}
+
+			err := Write(tasksJSON, &tasks)
+			if err != nil {
+				log.Fatal()
+			}
+
+		} else {
+			fmt.Println("Not enough arguments, use it like: \nglister update <task-name-or-id> name <new-name>\nglister update <task-name-or-id> description <new-desc>")
+		} 
+		
 	case "delete":
 		if len(os.Args) > 2 {
 			for index, value := range tasks.Tasks {
@@ -54,7 +89,7 @@ func main() {
 				log.Fatal()
 			}
 		} else {
-			fmt.Println("Not enough arguments, us it like glister delete <task-name-or-id>")
+			fmt.Println("Not enough arguments, us it like: glister delete <task-name-or-id>")
 		}
 
 	case "mark-in-progress":

@@ -5,7 +5,7 @@
 			"task": "sample task",
 			"description": "this is a sample task",
 			"createdAt": "now",
-			"updatedAt": "now",
+			"updatedAt": "2026-Sep-09 14:44:42",
 			"isFinished": true
 		},
 		{
@@ -18,10 +18,10 @@
 		},
 		{
 			"id": 3,
-			"task": "compute",
-			"description": "its more fun to compute",
+			"task": "computers",
+			"description": "computer field",
 			"createdAt": "2026-Sep-08 23:42:44",
-			"updatedAt": "2026-Sep-08 23:42:44",
+			"updatedAt": "2026-Sep-09 14:46:56",
 			"isFinished": false
 		},
 		{
@@ -29,7 +29,7 @@
 			"task": "funk riffing",
 			"description": "play some funky riffs on a guitar",
 			"createdAt": "2026-Sep-08 23:44:05",
-			"updatedAt": "2026-Sep-08 23:44:05",
+			"updatedAt": "2026-Sep-08 23:42:34",
 			"isFinished": false
 		}
 	]
