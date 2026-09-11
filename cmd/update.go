@@ -29,7 +29,7 @@ func Update(taskList handler.TaskList, timeNow, tasksJSON string) error {
 					}
 				}
 			default:
-				fmt.Println("Unknown command")
+				fmt.Println("Unknown command, only available commands for update is:\nname\ndescription")
 			}
 
 			for index, value := range taskList.Tasks {
@@ -50,7 +50,7 @@ func Update(taskList handler.TaskList, timeNow, tasksJSON string) error {
 			}
 				
 		} else {
-			fmt.Println("Not enough arguments, use it like: \nglister update <task-name-or-id> name <new-name>\nglister update <task-name-or-id> description <new-desc>")
+			fmt.Println("Not enough arguments, proper usage: \nglister update <task-name-or-id> name <new-name>\nglister update <task-name-or-id> description <new-desc>")
 		}
 
 		return nil

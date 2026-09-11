@@ -25,7 +25,7 @@ func Add(tasklist handler.TaskList, timeNow, tasksJSON string) error {
 			}
 
 		} else {
-			fmt.Println("Not enough arguments, use it like: glister add <task-name> <task-description>")
+			fmt.Println("Not enough arguments, proper usage:\nglister add <task-name> <task-description>")
 		}
 
 		return nil

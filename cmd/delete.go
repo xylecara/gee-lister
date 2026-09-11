@@ -32,7 +32,7 @@ func Delete(taskList handler.TaskList, tasksJSON string) error {
 			}
 			
 		} else {
-			fmt.Println("Not enough arguments, use it like: glister delete <task-name-or-id>")
+			fmt.Println("Not enough arguments, proper usage:\nglister delete <task-name-or-id>")
 		}
 
 		return nil

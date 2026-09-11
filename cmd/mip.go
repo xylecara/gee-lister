@@ -30,7 +30,7 @@ func MIP(taskList handler.TaskList, tasksJSON string) error {
 		}
 
 	} else {
-		fmt.Println("Not enough arguments, use it like: glister md <task-name-or-id>")
+		fmt.Println("Not enough arguments, proper usage\n: glister md <task-name-or-id>")
 	}
 
 	return nil

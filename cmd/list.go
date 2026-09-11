@@ -32,7 +32,7 @@ func List(taskList handler.TaskList) {
 				}
 
 			default:
-				fmt.Println("Unknown command")
+				fmt.Println("Unknown command, only commands available for list are:\ndone, todo, ip\nUsage:\nglister list\nWith commands:\ngliister list done")
 				stopLoop = true
 			}
 
