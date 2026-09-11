@@ -1,4 +1,4 @@
-package commands
+package cmd
 
 import (
 	"fmt"
@@ -191,6 +191,28 @@ func MS(taskList handler.TaskList, tasksJSON string) error {
 
 func List(taskList handler.TaskList) {
 	for _, value := range taskList.Tasks {
+			if len(os.Args) > 2 {
+				switch os.Args[2]{
+				case "done":
+					if value.Status == "done" {
+						fmt.Println(value)
+					}
+
+				case "todo":
+					if value.Status == "todo" {
+						fmt.Println(value)
+					}
+
+				case "ip":
+					if value.Status == "in-progress" {
+						fmt.Println(value)
+					}
+
+				}
+		} else {
 			fmt.Println(value)
 		}
+	}
+	
+	
 }

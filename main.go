@@ -7,7 +7,7 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/xylecara/gee-lister/commands"
+	"github.com/xylecara/gee-lister/cmd"
 	"github.com/xylecara/gee-lister/handler"
 )
 
@@ -27,45 +27,45 @@ func main() {
 
 	switch os.Args[1] {
 	case "add":
-		err := commands.Add(taskList, timeNowStr, tasksJSON)
+		err := cmd.Add(taskList, timeNowStr, tasksJSON)
 		if err != nil {
 			log.Fatal(err.Error())
 		}
 
 	case "update":
-		err := commands.Update(taskList, timeNowStr, tasksJSON)
+		err := cmd.Update(taskList, timeNowStr, tasksJSON)
 		if err != nil {
 			log.Fatal(err.Error())
 		} 
 		
 	case "delete":
-		err := commands.Delete(taskList, tasksJSON)
+		err := cmd.Delete(taskList, tasksJSON)
 		if err != nil {
 			log.Fatal(err.Error())
 		}
 
 	//stands for mark in progress
 	case "mip":
-		err := commands.MIP(taskList, tasksJSON)
+		err := cmd.MIP(taskList, tasksJSON)
 		if err != nil {
 			log.Fatal(err.Error())
 		}
 	
 	//stands for mark done
 	case "md":
-		err := commands.MD(taskList, tasksJSON)
+		err := cmd.MD(taskList, tasksJSON)
 		if err != nil {
 			log.Fatal(err.Error())
 		}
 
 	case "ms":
-		err :=  commands.MS(taskList, tasksJSON)
+		err :=  cmd.MS(taskList, tasksJSON)
 		if err != nil {
 			log.Fatal(err.Error())
 		}
 		
 	case "list":
-		commands.List(taskList)		
+		cmd.List(taskList)		
 	
 	default:
 		fmt.Println("Unknown command")
