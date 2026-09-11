@@ -10,14 +10,6 @@
 		},
 		{
 			"id": 2,
-			"task": "cycling",
-			"description": "ride a bike",
-			"createdAt": "2026-Sep-08 23:42:34",
-			"updatedAt": "2026-Sep-08 23:42:34",
-			"status": "todo"
-		},
-		{
-			"id": 3,
 			"task": "computers",
 			"description": "computer field",
 			"createdAt": "2026-Sep-08 23:42:44",
@@ -25,20 +17,36 @@
 			"status": "todo"
 		},
 		{
-			"id": 4,
+			"id": 3,
 			"task": "testing",
 			"description": "test the cli if it works",
 			"createdAt": "2026-Sep-09 21:25:25",
 			"updatedAt": "2026-Sep-09 21:25:25",
-			"status": "in-progress"
+			"status": "in progress"
 		},
 		{
-			"id": 5,
+			"id": 4,
 			"task": "animate",
 			"description": "animate the new episode of AJ's life",
 			"createdAt": "2026-Sep-11 13:15:18",
 			"updatedAt": "2026-Sep-11 13:15:18",
 			"status": "done"
+		},
+		{
+			"id": 5,
+			"task": "cycling",
+			"description": "ride a bicycle",
+			"createdAt": "2026-Sep-11 14:49:26",
+			"updatedAt": "2026-Sep-11 14:49:26",
+			"status": "done"
+		},
+		{
+			"id": 6,
+			"task": "code html",
+			"description": "Fix the website",
+			"createdAt": "2026-Sep-11 15:29:01",
+			"updatedAt": "2026-Sep-11 15:29:01",
+			"status": "in progress"
 		}
 	]
 }

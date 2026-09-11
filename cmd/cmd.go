@@ -113,7 +113,7 @@ func MIP(taskList handler.TaskList, tasksJSON string) error {
 	if len(os.Args) > 2 {
 		for index, value := range taskList.Tasks {
 			if os.Args[2] == strconv.Itoa(value.ID) || os.Args[2] == value.Task {
-				taskList.Tasks[index].Status = "in-progress"
+				taskList.Tasks[index].Status = "in progress"
 				hasTask = true
 				break
 			}
@@ -190,29 +190,41 @@ func MS(taskList handler.TaskList, tasksJSON string) error {
 }
 
 func List(taskList handler.TaskList) {
+	stopLoop := false
 	for _, value := range taskList.Tasks {
-			if len(os.Args) > 2 {
-				switch os.Args[2]{
-				case "done":
-					if value.Status == "done" {
-						fmt.Println(value)
-					}
-
-				case "todo":
-					if value.Status == "todo" {
-						fmt.Println(value)
-					}
-
-				case "ip":
-					if value.Status == "in-progress" {
-						fmt.Println(value)
-					}
-
+		if len(os.Args) > 2 {
+			switch os.Args[2]{
+			case "done":
+				if value.Status == "done" {
+					formatter.LayoutTasks(taskList, os.Args[2])
+					stopLoop = true
 				}
-		} else {
-			fmt.Println(value)
+
+			case "todo":
+				if value.Status == "todo" {
+					formatter.LayoutTasks(taskList, os.Args[2])
+					stopLoop = true
+				}
+
+			case "ip":
+				if value.Status == "in progress" {
+					formatter.LayoutTasks(taskList, os.Args[2])
+					stopLoop = true
+				}
+
+			default:
+				fmt.Println("Unknown command")
+				stopLoop = true
+			}
+
+			if stopLoop {
+				break
+			}
 		}
 	}
 	
+	if len(os.Args) < 3 {
+		formatter.LayoutTasks(taskList, "")
+	}
 	
 }
