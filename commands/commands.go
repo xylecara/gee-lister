@@ -108,6 +108,7 @@ func Delete(taskList handler.TaskList, tasksJSON string) error {
 		return nil
 }
 
+//Stands for mark in progress
 func MIP(taskList handler.TaskList, tasksJSON string) error {
 	if len(os.Args) > 2 {
 		for index, value := range taskList.Tasks {
@@ -119,7 +120,7 @@ func MIP(taskList handler.TaskList, tasksJSON string) error {
 		}
 
 		if !hasTask {
-			fmt.Printf("no task with name or id %v found\n", os.Args[2])
+			fmt.Printf("no task with name or id %q found\n", os.Args[2])
 		} else {
 			err := handler.Write(tasksJSON, &taskList)
 			if err != nil {
@@ -134,18 +135,46 @@ func MIP(taskList handler.TaskList, tasksJSON string) error {
 	return nil
 }
 
+//Stands for mark done
 func MD(taskList handler.TaskList, tasksJSON string) error {
 	if len(os.Args) > 2 {
 		for index, value := range taskList.Tasks {
 			if os.Args[2] == strconv.Itoa(value.ID) || os.Args[2] == value.Task {
-				taskList.Tasks[index].Status = "Done"
+				taskList.Tasks[index].Status = "done"
 				hasTask = true
 				break
 			} 
 		}
 
 		if !hasTask {
-			fmt.Printf("no task with name or id %v found\n", os.Args[2])
+			fmt.Printf("no task with name or id %q found\n", os.Args[2])
+		} else {
+			err := handler.Write(tasksJSON, &taskList)
+			if err != nil {
+				return err
+			}
+		}
+
+	} else {
+		fmt.Println("Not enough arguments, use it like: glister md <task-name-or-id>")
+	}
+
+	return nil
+}
+
+//Stands for mark stop
+func MS(taskList handler.TaskList, tasksJSON string) error {
+	if len(os.Args) > 2 {
+		for index, value := range taskList.Tasks {
+			if os.Args[2] == strconv.Itoa(value.ID) || os.Args[2] == value.Task {
+				taskList.Tasks[index].Status = "todo"
+				hasTask = true
+				break
+			} 
+		}
+
+		if !hasTask {
+			fmt.Printf("no task with name or id %q found\n", os.Args[2])
 		} else {
 			err := handler.Write(tasksJSON, &taskList)
 			if err != nil {

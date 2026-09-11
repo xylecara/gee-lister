@@ -29,33 +29,39 @@ func main() {
 	case "add":
 		err := commands.Add(taskList, timeNowStr, tasksJSON)
 		if err != nil {
-			log.Fatal()
+			log.Fatal(err.Error())
 		}
 
 	case "update":
 		err := commands.Update(taskList, timeNowStr, tasksJSON)
 		if err != nil {
-			log.Fatal()
+			log.Fatal(err.Error())
 		} 
 		
 	case "delete":
 		err := commands.Delete(taskList, tasksJSON)
 		if err != nil {
-			log.Fatal()
+			log.Fatal(err.Error())
 		}
 
 	//stands for mark in progress
 	case "mip":
 		err := commands.MIP(taskList, tasksJSON)
 		if err != nil {
-			log.Fatal()
+			log.Fatal(err.Error())
 		}
 	
 	//stands for mark done
 	case "md":
 		err := commands.MD(taskList, tasksJSON)
 		if err != nil {
-			log.Fatal()
+			log.Fatal(err.Error())
+		}
+
+	case "ms":
+		err :=  commands.MS(taskList, tasksJSON)
+		if err != nil {
+			log.Fatal(err.Error())
 		}
 		
 	case "list":

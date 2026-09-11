@@ -6,7 +6,7 @@
 			"description": "this is a sample task",
 			"createdAt": "now",
 			"updatedAt": "2026-Sep-09 14:44:42",
-			"status": "test"
+			"status": "todo"
 		},
 		{
 			"id": 2,
