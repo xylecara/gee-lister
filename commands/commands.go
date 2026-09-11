@@ -21,7 +21,7 @@ func Add(tasklist handler.TaskList, timeNow, tasksJSON string) error {
 				Description: os.Args[3], 
 				CreatedAt: timeNow, 
 				UpdatedAt: timeNow, 
-				IsFinished: false})
+				Status: "todo"})
 
 			err := handler.Write(tasksJSON, &tasklist)
 			if err != nil {
@@ -112,7 +112,7 @@ func MIP(taskList handler.TaskList, tasksJSON string) error {
 	if len(os.Args) > 2 {
 		for index, value := range taskList.Tasks {
 			if os.Args[2] == strconv.Itoa(value.ID) || os.Args[2] == value.Task {
-				taskList.Tasks[index].IsFinished = false
+				taskList.Tasks[index].Status = "in-progress"
 				hasTask = true
 				break
 			}
@@ -138,7 +138,7 @@ func MD(taskList handler.TaskList, tasksJSON string) error {
 	if len(os.Args) > 2 {
 		for index, value := range taskList.Tasks {
 			if os.Args[2] == strconv.Itoa(value.ID) || os.Args[2] == value.Task {
-				taskList.Tasks[index].IsFinished = true
+				taskList.Tasks[index].Status = "Done"
 				hasTask = true
 				break
 			} 

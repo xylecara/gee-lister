@@ -15,7 +15,7 @@ type Task struct {
 	Description string `json:"description"`
 	CreatedAt   string `json:"createdAt"`
 	UpdatedAt   string `json:"updatedAt"`
-	IsFinished  bool   `json:"isFinished"`
+	Status      string `json:"status"`
 }
 
 // From json to go struct

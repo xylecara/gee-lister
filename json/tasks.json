@@ -6,7 +6,7 @@
 			"description": "this is a sample task",
 			"createdAt": "now",
 			"updatedAt": "2026-Sep-09 14:44:42",
-			"isFinished": true
+			"status": "test"
 		},
 		{
 			"id": 2,
@@ -14,7 +14,7 @@
 			"description": "ride a bike",
 			"createdAt": "2026-Sep-08 23:42:34",
 			"updatedAt": "2026-Sep-08 23:42:34",
-			"isFinished": false
+			"status": "todo"
 		},
 		{
 			"id": 3,
@@ -22,7 +22,7 @@
 			"description": "computer field",
 			"createdAt": "2026-Sep-08 23:42:44",
 			"updatedAt": "2026-Sep-09 14:46:56",
-			"isFinished": false
+			"status": "todo"
 		},
 		{
 			"id": 4,
@@ -30,7 +30,15 @@
 			"description": "test the cli if it works",
 			"createdAt": "2026-Sep-09 21:25:25",
 			"updatedAt": "2026-Sep-09 21:25:25",
-			"isFinished": false
+			"status": "in-progress"
+		},
+		{
+			"id": 5,
+			"task": "animate",
+			"description": "animate the new episode of AJ's life",
+			"createdAt": "2026-Sep-11 13:15:18",
+			"updatedAt": "2026-Sep-11 13:15:18",
+			"status": "Done"
 		}
 	]
 }
