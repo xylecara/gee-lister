@@ -47,6 +47,14 @@
 			"createdAt": "2026-Sep-11 15:29:01",
 			"updatedAt": "2026-Sep-11 15:29:01",
 			"status": "in progress"
+		},
+		{
+			"id": 7,
+			"task": "Calculate",
+			"description": "Find the area of a pizza.",
+			"createdAt": "2026-Sep-11 23:09:08",
+			"updatedAt": "2026-Sep-11 23:22:56",
+			"status": "done"
 		}
 	]
 }
