@@ -28,4 +28,4 @@ bash
 $ glister list
 ```
 
-If you have any difficulties with the program, use glister help or \glister [command] help\
+If you have any difficulties with the program, use `glister help` or `glister [command] help`
