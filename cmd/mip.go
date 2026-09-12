@@ -20,7 +20,18 @@ func MIP(taskList handler.TaskList, tasksJSON string) error {
 			} 
 		}
 
-		if !hasTask {
+		if os.Args[2] == "help" {
+		fmt.Println(`NAME:
+	mip - Marks status as in progress
+
+USAGE:
+	glister mip <task-name-or-id>
+
+EXAMPLES:
+	$ glister mip Cycling
+	$ glister mip "Ride a Bicycle"
+	$ glister mip 1`)
+	} else if !hasTask && os.Args[2] != "help" {
 			fmt.Printf("no task with name or id %q found\n", os.Args[2])
 		} else {
 			err := handler.Write(tasksJSON, &taskList)
@@ -30,7 +41,7 @@ func MIP(taskList handler.TaskList, tasksJSON string) error {
 		}
 
 	} else {
-		fmt.Println("Not enough arguments, proper usage\n: glister md <task-name-or-id>")
+		fmt.Println("Not enough arguments, proper usage:\nglister md <task-name-or-id>")
 	}
 
 	return nil

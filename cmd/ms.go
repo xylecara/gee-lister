@@ -20,7 +20,18 @@ func MS(taskList handler.TaskList, tasksJSON string) error {
 			} 
 		}
 
-		if !hasTask {
+		if os.Args[2] == "help" {
+		fmt.Println(`NAME:
+	ms - Marks status as todo or stops its progress
+
+USAGE:
+	glister ms <task-name-or-id>
+
+EXAMPLES:
+	$ glister ms Cycling
+	$ glister ms "Ride a Bicycle"
+	$ glister ms 1`)
+	} else if !hasTask && os.Args[2] != "help" {
 			fmt.Printf("no task with name or id %q found\n", os.Args[2])
 		} else {
 			err := handler.Write(tasksJSON, &taskList)

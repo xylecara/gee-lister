@@ -30,6 +30,24 @@ func List(taskList handler.TaskList) {
 					formatter.LayoutTasks(taskList, os.Args[2])
 					stopLoop = true
 				}
+			
+			case "help":
+				fmt.Println(`NAME:
+	list - prints out tasks in the terminal in a layout
+
+USAGE:
+	glister list
+	glister list [command]
+
+COMMANDS:
+	done - lists all tasks that are done
+	todo - lists all tasks that are todo or idle
+	ip   - lists all tasks that are in progress
+
+EXAMPLES:
+	$ glister list
+	$ glister list todo`)
+			stopLoop = true
 
 			default:
 				fmt.Println("Unknown command, only commands available for list are:\ndone, todo, ip\nUsage:\nglister list\nWith commands:\ngliister list done")
