@@ -29,3 +29,10 @@ $ glister list
 ```
 
 If you have any difficulties with the program, use `glister help` or `glister [command] help`
+
+## Extra
+
+This project was guided by roadmap.sh but I have tweaked some stuff into my liking. If you wanna
+try building this yourself, check the link below.
+
+https://roadmap.sh/projects/task-tracker
